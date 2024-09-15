@@ -13,4 +13,8 @@ docker exec pih-rabbitmq rabbitmqctl enable_feature_flag all
 
 This will enable the `mqtt` plugin (required to receive/accept MQTT messages), as well as ensuring that the relevant feature flags are enabled to cater for the new functionality.
 
+### Schema Import
+
+To quickly setup RabbitMQ as required, the included `defs.json` schema file can be imported. This will ensure the relevant queues, exchanges, and bindings are setup.
+
 **NOTE**: This is all still done manually. One day, it will be configured on startup.
