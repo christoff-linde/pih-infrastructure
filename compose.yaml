@@ -72,9 +72,29 @@ services:
       interval: 10s
       timeout: 5s
       retries: 5
+  rabbitmq:
+    image: rabbitmq:3-management
+    container_name: pih-rabbitmq
+    ports:
+      - 1883:1883
+      - 5552:5552
+      - 5672:5672
+      - 15672:15672
+    environment:
+      RABBITMQ_SERVER_ADDITIONAL_ERL_ARGS: "-rabbitmq_stream advertised_host localhost"
+    volumes:
+      - rabbitmq_data:/var/lib/rabbitmq
+      # TODO: enable support for configuring default plugins
+      #- enabled_plugins:/etc/rabbitmq/enabled_plugins
+      # TODO: setup default schema for queues, exchangesm and bindins using defs.json
 
 volumes:
   db-data:
+  rabbitmq_data:
+  #rabbitmq:
 secrets:
   db-password:
     file: db/password.txt
+
+networks:
+  pih-network:
