@@ -80,13 +80,14 @@ services:
       - 5552:5552
       - 5672:5672
       - 15672:15672
+      - 15692:15692
     environment:
       RABBITMQ_SERVER_ADDITIONAL_ERL_ARGS: "-rabbitmq_stream advertised_host localhost"
     volumes:
       - rabbitmq_data:/var/lib/rabbitmq
-      # TODO: enable support for configuring default plugins
-      #- enabled_plugins:/etc/rabbitmq/enabled_plugins
-      # TODO: setup default schema for queues, exchangesm and bindins using defs.json
+      - ./rabbitmq/rabbitmq.conf:/etc/rabbitmq/rabbitmq.conf
+      - ./rabbitmq/enabled_plugins:/etc/rabbitmq/enabled_plugins
+      - ./rabbitmq/defs.json:/etc/rabbitmq/defs.json
 
 volumes:
   db-data:
