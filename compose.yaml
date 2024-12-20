@@ -72,6 +72,16 @@ services:
       interval: 10s
       timeout: 5s
       retries: 5
+  server:
+    image: christofflinde/pih-core-go:latest
+    container_name: pih-core
+    ports:
+      - 8080:8080
+    env_file:
+      - .env
+    depends_on:
+      db:
+        condition: service_healthy
   rabbitmq:
     image: rabbitmq:3-management
     container_name: pih-rabbitmq
