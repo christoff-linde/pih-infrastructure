@@ -98,10 +98,19 @@ services:
       - ./rabbitmq/rabbitmq.conf:/etc/rabbitmq/rabbitmq.conf
       - ./rabbitmq/enabled_plugins:/etc/rabbitmq/enabled_plugins
       - ./rabbitmq/defs.json:/etc/rabbitmq/defs.json
+  prometheus:
+    image: prom/prometheus
+    container_name: pih-prometheus
+    ports:
+      - 9090:9090
+    volumes:
+      - prometheus-data:/prometheus
+      - ./prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
 
 volumes:
   db-data:
   rabbitmq_data:
+  prometheus-data:
   #rabbitmq:
 secrets:
   db-password:
