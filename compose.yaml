@@ -125,6 +125,7 @@ volumes:
   grafana-storage: {}
   prometheus-data:
   rabbitmq_data:
+  prometheus-data:
   #rabbitmq:
 secrets:
   db-password:
