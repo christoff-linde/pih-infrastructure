@@ -113,6 +113,12 @@ services:
       - 3000:3000
     volumes:
       - grafana-storage:/var/lib/grafana
+  postgres-exporter:
+    image: quay.io/prometheuscommunity/postgres-exporter
+    ports:
+      - 9187:9187
+    environment:
+      - DATA_SOURCE_NAME="postgres://monitoring:pih-admin@host.docker.internal:5439/pih?sslmode=require"
 
 volumes:
   db-data:
