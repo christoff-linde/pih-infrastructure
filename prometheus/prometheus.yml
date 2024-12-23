@@ -5,16 +5,18 @@ global:
 
 scrape_configs:
   - job_name: prometheus
+    metrics_path: /metrics
     static_configs:
       - targets:
           - "host.docker.internal:9090"
   - job_name: "docker"
+    metrics_path: /metrics
     static_configs:
       - targets:
           - "host.docker.internal:9323"
   - job_name: "pih-core-go"
     static_configs:
-      - targets: ["host.docker.internal:8080"]
+      - targets: ["host.docker.internal:8080", "host.docker.internal:9187"]
   - job_name: "rabbitmq-server"
     static_configs:
       - targets:
@@ -26,3 +28,7 @@ scrape_configs:
     static_configs:
       - targets:
           - "host.docker.internal:15692"
+  - job_name: postgres-exporter
+    # metrics_path: /metrics
+    static_configs:
+      - targets: ["host.docker.internal:9187"]
