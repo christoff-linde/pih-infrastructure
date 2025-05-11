@@ -119,6 +119,11 @@ services:
       - 9187:9187
     environment:
       - DATA_SOURCE_NAME="postgres://monitoring:pih-admin@host.docker.internal:5439/pih?sslmode=require"
+  arroyo:
+    image: ghcr.io/arroyosystems/arroyo:latest
+    container_name: arroyo
+    ports:
+      - 5115:5115
   minio:
     image: minio/minio
     container_name: minio
