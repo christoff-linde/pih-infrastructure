@@ -119,14 +119,21 @@ services:
       - 9187:9187
     environment:
       - DATA_SOURCE_NAME="postgres://monitoring:pih-admin@host.docker.internal:5439/pih?sslmode=require"
+  arroyo:
+    image: ghcr.io/arroyosystems/arroyo:latest
+    container_name: arroyo
+    ports:
+      - 5115:5115
+    environment:
+      - AWS_ACCESS_KEY_ID=admin
+      - AWS_SECRET_ACCESS_KEY=password
+      - AWS_REGION=us-east-1
 
 volumes:
   db-data:
   grafana-storage: {}
   prometheus-data:
   rabbitmq_data:
-  prometheus-data:
-  #rabbitmq:
 secrets:
   db-password:
     file: db/password.txt
